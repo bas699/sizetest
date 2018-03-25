@@ -11,7 +11,7 @@ def get_dir_size(path='.'):
     return total
 
 root = tkinter.Tk()
-root.attributes("TopMost",1)
+root.wm_attributes("-topmost", 1)
 root.withdraw()
 fTyp = [("","*")]
 iDir = os.path.abspath(os.path.dirname(__file__))
@@ -21,20 +21,22 @@ sz = 0
 psz = 0
 zy = 0
 en = 0
+ct = 0
 sz = get_dir_size(dir)
 psz = sz
-while zy == 0:
+while en == 0:
 	sz = get_dir_size(dir)
 	print(sz)
 	if zy == 0 and sz > psz:
-		print("start")
 		zy = 1
 	if zy == 1 :
             if sz == psz:
                 ct += 1
-                if ct == 0:
+                if ct == 10:
                     print("end")
-                else:
-                    ct = 0
+                    tkinter.messagebox.showinfo("","")
+                    en = 1
+            else:
+            	ct = 0
 	psz = sz
-	time.sleep(10)
+	time.sleep(1)
